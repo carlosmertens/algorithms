@@ -1,6 +1,8 @@
 // ***** 1. FizzBuzz algorithm
 // If divisible by 3, returns "fizz". If divisible by 5, returns "Buzz". And if divisible by 3 and 5, returns "FizzBuzz"
 
+console.log('\n********** 1. FizzBuzz **********');
+
 const output = fizzBuzz(10);
 console.log(output);
 
@@ -19,6 +21,8 @@ function fizzBuzz(input) {
 // every 5 speed over the limit gets 1 point
 // Use Math.floor()
 // 12 points over the license is suspended
+
+console.log('\n********** 2. Check Speed **********');
 
 checkSpeed(80);
 
@@ -47,6 +51,8 @@ function checkSpeed(speed) {
 // 80-89: B
 // 90-100: A
 
+console.log('\n********** 3. Calculate Grade **********');
+
 const marks = [90, 80, 100];
 console.log(calculateGrade(marks));
 
@@ -69,6 +75,8 @@ function calculateAverage(arr) {
 
 // ***** 4. showPrimes function returns prime numbers base on limit provided.
 
+console.log('\n********** 4. Show Primes **********');
+
 showPrimes(10);
 
 function showPrimes(limit) {
@@ -89,6 +97,8 @@ function isPrime(number) {
 // ***** 5. Sum Numerical Array
 // sum all the items in a numerical array using reduce method
 
+console.log('\n********** 5. Sum Numerical Array **********');
+
 const numbers = [1, -1, 2, 5];
 
 function sumArray(arr) {
@@ -100,8 +110,58 @@ console.log(sumArray(numbers));
 // ***** 6. Sum unlimited number of arguments pass to the function
 // sum unknown number of arguments pass to the function with rest operator
 
+console.log('\n********** 6. Sum Numerical Arguments **********');
+
 function sumArguments(...args) {
   return args.reduce((acummulator, currentValue) => acummulator + currentValue);
 }
 
 console.log(sumArguments(1, 2, 3, 4, 5, 10));
+
+// ***** 7. Interst Rate Algorithm
+// Calculate interest rate for a loan and use default parameters
+
+console.log('\n********** 7. Interest Rate Calculator **********');
+
+function interestRate(principal = 300000, rate = 1.5, years = 15) {
+  return ((principal * rate) / 100) * years;
+}
+
+console.log(interestRate());
+
+// 8. RemoveVowels
+// Algorithm to remove vowels from a string using regex or looping and concatenating
+
+console.log('\n********** 8. Remove Vowels **********');
+
+const removeVowels = (string) => {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  let newString = '';
+
+  for (let i = 0; i < string.length; i++) {
+    if (!vowels.includes(string[i].toLowerCase())) {
+      newString += string[i];
+    }
+  }
+  console.log({ newString });
+
+  return string.replace(/[aeiou]/gi, '');
+};
+
+console.log(removeVowels('table')); // "tbl"
+console.log(removeVowels('JavaScript')); // "JvScrpt"
+console.log('Result:', removeVowels('AEIOU')); // ""
+console.log(removeVowels('ABCDe')); // "BCD"
+
+// 9. Reverse String
+// Reverse string
+
+console.log('\n********** 9. Reverse String **********');
+
+const reverseString = (string) => string.split('').reverse().join('');
+
+console.log(reverseString('table')); // "elbat"
+console.log(reverseString('blabla')); // "albalb"
+console.log(reverseString('')); // ""
+console.log(reverseString('tomato')); // "otamot"
+console.log(reverseString('cat')); // "tac"
