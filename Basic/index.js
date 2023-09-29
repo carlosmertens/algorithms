@@ -1,10 +1,9 @@
+console.log('\n********** 1. FizzBuzz **********');
 // ***** 1. FizzBuzz algorithm
 // If divisible by 3, returns "fizz". If divisible by 5, returns "Buzz". And if divisible by 3 and 5, returns "FizzBuzz"
 
-console.log('\n********** 1. FizzBuzz **********');
-
 const output = fizzBuzz(10);
-console.log(output);
+// console.log(output);
 
 function fizzBuzz(input) {
   if (typeof input !== 'number') return NaN;
@@ -15,16 +14,14 @@ function fizzBuzz(input) {
   else return input;
 }
 
+console.log('\n********** 2. Check Speed **********');
 // ***** 2. CheckSpeed function
-
 // Speed Limit = 70
 // every 5 speed over the limit gets 1 point
 // Use Math.floor()
 // 12 points over the license is suspended
 
-console.log('\n********** 2. Check Speed **********');
-
-checkSpeed(80);
+// checkSpeed(80);
 
 function checkSpeed(speed) {
   const speedLimit = 70;
@@ -43,18 +40,16 @@ function checkSpeed(speed) {
   else console.log('Points:', points);
 }
 
+console.log('\n********** 3. Calculate Grade **********');
 // ***** 3. Function that calculates the grade of a studend in letters
-
 // 1-59: F
 // 60-69: D
 // 70-79: C
 // 80-89: B
 // 90-100: A
 
-console.log('\n********** 3. Calculate Grade **********');
-
 const marks = [90, 80, 100];
-console.log(calculateGrade(marks));
+// console.log(calculateGrade(marks));
 
 function calculateGrade(arr) {
   const avg = calculateAverage(arr);
@@ -73,11 +68,10 @@ function calculateAverage(arr) {
   return sum / arr.length;
 }
 
+console.log('\n********** 4. Show Primes **********');
 // ***** 4. showPrimes function returns prime numbers base on limit provided.
 
-console.log('\n********** 4. Show Primes **********');
-
-showPrimes(10);
+// showPrimes(10);
 
 function showPrimes(limit) {
   for (let number = 2; number <= limit; number++) {
@@ -94,10 +88,9 @@ function isPrime(number) {
   return true;
 }
 
+console.log('\n********** 5. Sum Numerical Array **********');
 // ***** 5. Sum Numerical Array
 // sum all the items in a numerical array using reduce method
-
-console.log('\n********** 5. Sum Numerical Array **********');
 
 const numbers = [1, -1, 2, 5];
 
@@ -105,63 +98,162 @@ function sumArray(arr) {
   return arr.reduce((acummulator, currentValue) => acummulator + currentValue);
 }
 
-console.log(sumArray(numbers));
+// console.log(sumArray(numbers));
 
+console.log('\n********** 6. Sum Numerical Arguments **********');
 // ***** 6. Sum unlimited number of arguments pass to the function
 // sum unknown number of arguments pass to the function with rest operator
 
-console.log('\n********** 6. Sum Numerical Arguments **********');
-
 function sumArguments(...args) {
+  console.log(Array.isArray(args[0]));
+
+  if (args.length === 1 && Array.isArray(args[0])) {
+    args = [...args[0]];
+  }
+
   return args.reduce((acummulator, currentValue) => acummulator + currentValue);
 }
 
-console.log(sumArguments(1, 2, 3, 4, 5, 10));
-
-// ***** 7. Interst Rate Algorithm
-// Calculate interest rate for a loan and use default parameters
+// console.log(sumArguments([1, 2, 3, 4, 5, 10]));
+// console.log(sumArguments(1, 2, 3, 4, 5, 10));
 
 console.log('\n********** 7. Interest Rate Calculator **********');
+// ***** 7. Interst Rate Algorithm
+// Calculate interest rate for a loan and use default parameters
 
 function interestRate(principal = 300000, rate = 1.5, years = 15) {
   return ((principal * rate) / 100) * years;
 }
 
-console.log(interestRate());
+// console.log(interestRate());
 
+console.log('\n********** 8. Remove Vowels **********');
 // 8. RemoveVowels
 // Algorithm to remove vowels from a string using regex or looping and concatenating
 
-console.log('\n********** 8. Remove Vowels **********');
-
 const removeVowels = (string) => {
   const vowels = ['a', 'e', 'i', 'o', 'u'];
-  let newString = '';
+  let output = '';
 
   for (let i = 0; i < string.length; i++) {
-    if (!vowels.includes(string[i].toLowerCase())) {
-      newString += string[i];
-    }
+    if (!vowels.includes(string[i].toLowerCase())) output += string[i];
   }
-  console.log({ newString });
+  console.log({ output });
 
   return string.replace(/[aeiou]/gi, '');
 };
 
-console.log(removeVowels('table')); // "tbl"
-console.log(removeVowels('JavaScript')); // "JvScrpt"
-console.log('Result:', removeVowels('AEIOU')); // ""
-console.log(removeVowels('ABCDe')); // "BCD"
+// console.log(removeVowels('table')); // "tbl"
+// console.log(removeVowels('JavaScript')); // "JvScrpt"
+// console.log('Result:', removeVowels('AEIOU')); // ""
+// console.log(removeVowels('ABCDe')); // "BCD"
 
+console.log('\n********** 9. Reverse String **********');
 // 9. Reverse String
 // Reverse string
 
-console.log('\n********** 9. Reverse String **********');
-
 const reverseString = (string) => string.split('').reverse().join('');
 
-console.log(reverseString('table')); // "elbat"
-console.log(reverseString('blabla')); // "albalb"
-console.log(reverseString('')); // ""
-console.log(reverseString('tomato')); // "otamot"
-console.log(reverseString('cat')); // "tac"
+// console.log(reverseString('table')); // "elbat"
+// console.log(reverseString('blabla')); // "albalb"
+// console.log(reverseString('')); // ""
+// console.log(reverseString('tomato')); // "otamot"
+// console.log(reverseString('cat')); // "tac"
+
+console.log('\n********** 10. Area of circle **********');
+// 10. Area of Circle
+// Create an object with a metho to calculate the area of a circle
+
+const circle = {
+  radius: 1,
+  get area() {
+    return Math.PI * this.radius * this.radius;
+  },
+};
+
+// console.log(circle.area);
+
+// circle.radius = 2;
+
+// console.log(circle.area);
+
+console.log('\n********** 11. Error Handling **********');
+// 11. ERROR HANDLING
+// Use error handling in a sum items form am erray function.
+
+// try {
+//   const numbersArray = [1, 2, 5, 7];
+//   // const count = sumArray(numbersArray);
+//   const count = sumArray('');
+//   console.log(count);
+// } catch (error) {
+//   console.log(error.message);
+// }
+
+function sumArray(arr) {
+  if (!Array.isArray(arr))
+    throw new Error('Invalid array of numbers! Please try again.');
+
+  return arr.reduce((acummulator, currentValue) => acummulator + currentValue);
+}
+
+console.log('\n********** 12. Array Range **********');
+// 12. arrayRange
+// Create an array with a range of 2 numbers.
+
+function arrayRange(min, max) {
+  const newArray = [];
+  for (let i = min; i <= max; i++) newArray.push(i);
+
+  return newArray;
+}
+
+// console.log(arrayRange(2, 1));
+
+console.log('\n********** 13. Move Element **********');
+// 13. move
+// Given an array, index and offset, return new array with the lement moved.
+// Handle errors
+
+const arr1 = [1, 2, 3, 4];
+
+const arr1Moved = move(arr1, 1, 1);
+
+// console.log(arr1Moved);
+
+function move(array, index, offset) {
+  const output = [...array];
+  const position = index + offset;
+
+  if (position >= array.length || position < 0) {
+    console.error('Invalid offset. Can not move out of the array!');
+    return output;
+  }
+
+  const elem = output.splice(index, 1)[0];
+  output.splice(position, 0, elem);
+
+  return output;
+}
+
+// function move(array, index, offset) {
+//   const output = [];
+//   let elem = array.splice(index, 1);
+//   console.log({ elem });
+//   console.log(array.splice(offset, 0, elem[0]));
+//   console.log(array);
+
+//   return output;
+// }
+
+console.log('\n********** 14. Max Element with Reduce Method **********');
+// 14. getMax
+// find the max number in an array using the reduce method.
+
+function getMax(arr) {
+  if (arr.length === 0) return undefined;
+
+  return arr.reduce((accu, current) => (accu > current ? accu : current));
+}
+
+// console.log(getMax([1, 2, 3, 4]));
