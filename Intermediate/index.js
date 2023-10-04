@@ -1,5 +1,5 @@
-console.log('********** INTERMEDIATE  ALGORITHMS **********');
-console.log('***** OOP (Object Oriented Programming) ******');
+console.log('*************** INTERMEDIATE  ALGORITHMS ***************');
+console.log('********** OOP (Object Oriented Programming) ***********');
 // OOP (Object Oriented Programming)
 // - ENCAPSULATION
 // -- Reduce complexity + increase reusability
@@ -10,7 +10,7 @@ console.log('***** OOP (Object Oriented Programming) ******');
 // - POLYMORPHISM
 // -- Refactor ugly switch/case statement
 
-console.log('\n*** Object Review ****');
+console.log('\n********** Object Review **********');
 
 // const circle = {
 //   radius: 1,
@@ -62,10 +62,43 @@ const circle1 = new CreateCircle(1, 1, 2);
 
 // console.log('this...', this);
 
-console.log('\n*** Stop Watch ****');
+console.log('\n********** Stop Watch **********');
 // Stop watch with start, stop and reset methods.
+// Use constructor function
 
-console.log('\n*** Street Fight ****');
+function StopWatch() {
+  let startTime,
+    endTime,
+    running,
+    duration = 0;
+
+  this.start = function () {
+    if (running) throw new Error('Stopwatch is already started.');
+    running = true;
+    startTime = new Date();
+  };
+  this.stop = function () {
+    if (!running) throw Error('Stopwatch has not yet started.');
+    running = false;
+    endTime = new Date();
+
+    const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+    duration += seconds;
+  };
+  this.reset = function () {
+    startTime = null;
+    endTime = null;
+    running = false;
+    duration = 0;
+  };
+  Object.defineProperty(this, 'duration', {
+    get: function () {
+      return duration;
+    },
+  });
+}
+
+console.log('\n********** Street Fight ***********');
 // Inplement street fight game with object and methods
 
 let player1 = createPlayer('Ken', 'Helicopter kick', 20);
@@ -94,7 +127,7 @@ do {
 
 const endMessage =
   player1.health > player2.health
-    ? `>>> ${player1.name} wins!`
-    : `>>> ${player2.name} wins!`;
+    ? `>>> ${player1.name} wins!`.toUpperCase()
+    : `>>> ${player2.name} wins!`.toUpperCase();
 
 console.log(endMessage);
