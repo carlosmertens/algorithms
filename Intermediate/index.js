@@ -1,3 +1,4 @@
+console.log('********** INTERMEDIATE  ALGORITHMS **********');
 console.log('***** OOP (Object Oriented Programming) ******');
 // OOP (Object Oriented Programming)
 // - ENCAPSULATION
@@ -9,7 +10,7 @@ console.log('***** OOP (Object Oriented Programming) ******');
 // - POLYMORPHISM
 // -- Refactor ugly switch/case statement
 
-console.log('*** Object Review ****');
+console.log('\n*** Object Review ****');
 
 // const circle = {
 //   radius: 1,
@@ -49,11 +50,51 @@ function CreateCircle(radius, x, y) {
     y: y,
   };
   this.radius = radius;
+  this.test = 5;
   this.draw = function () {
-    return `Constructor: Draw a circle. Private color is ${color}!`;
+    return `Constructor: Draw a circle. Private color is ${color} and test is ${this.test}!`;
   };
 }
 
 const circle1 = new CreateCircle(1, 1, 2);
-console.log(circle1.draw());
-console.log(circle1);
+// console.log(circle1.draw());
+// console.log(circle1);
+
+// console.log('this...', this);
+
+console.log('\n*** Stop Watch ****');
+// Stop watch with start, stop and reset methods.
+
+console.log('\n*** Street Fight ****');
+// Inplement street fight game with object and methods
+
+let player1 = createPlayer('Ken', 'Helicopter kick', 20);
+let player2 = createPlayer('Ryu', 'Ascending punch', 20);
+
+function createPlayer(name, attackSkill, attackDamage) {
+  return {
+    name,
+    health: 100,
+    attackSkill,
+    attackDamage,
+    attack(player) {
+      player.health -= this.attackDamage;
+      console.log(
+        `${this.name} attacked ${player.name} with a ${this.attackSkill}, inflicting ${this.attackDamage} damage. ${player.name}'s health is now ${player.health}.`
+      );
+    },
+  };
+}
+
+do {
+  const coin = Math.floor(Math.random() * 2 + 1);
+  if (coin === 1) player1.attack(player2);
+  if (coin === 2) player2.attack(player1);
+} while (player1.health > 1 && player2.health > 1);
+
+const endMessage =
+  player1.health > player2.health
+    ? `>>> ${player1.name} wins!`
+    : `>>> ${player2.name} wins!`;
+
+console.log(endMessage);
