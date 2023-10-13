@@ -119,15 +119,68 @@ function createPlayer(name, attackSkill, attackDamage) {
   };
 }
 
-do {
-  const coin = Math.floor(Math.random() * 2 + 1);
-  if (coin === 1) player1.attack(player2);
-  if (coin === 2) player2.attack(player1);
-} while (player1.health > 1 && player2.health > 1);
+// do {
+//   const coin = Math.floor(Math.random() * 2 + 1);
+//   if (coin === 1) player1.attack(player2);
+//   if (coin === 2) player2.attack(player1);
+// } while (player1.health > 1 && player2.health > 1);
 
 const endMessage =
   player1.health > player2.health
     ? `>>> ${player1.name} wins!`.toUpperCase()
     : `>>> ${player2.name} wins!`.toUpperCase();
 
-console.log(endMessage);
+// console.log(endMessage);
+
+console.log('\n********** Calculate Days ***********');
+// Inplement street fight game with object and methods
+// Exercise
+// Create function with (startDay, endDay)
+// Create a JS function that will accept startingDate and endDate as parameters in dd/mm/yyy format
+// With out using the Date class and its methods this function should return the total number of days between these two dates
+// function daysCalculator(startingDate, endDate)
+// function must return the total number of days between them. like 8000 days
+// Print those days on terminal using the console.log
+////////////////////////////
+
+// const result1 = totalDays('01/01/08');
+// const result2 = totalDays('20/05/23');
+// console.log({ result1 });
+// console.log({ result2 });
+
+function totalDays(date) {
+  const [day, month, year] = date.split('/').map((str) => Number(str));
+  const monthsValues = [null, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  let output = day; // Initialize output with days provided
+
+  // Iterate months excluding actual month
+  for (let i = 1; i < month; i++) {
+    output += monthsValues[i];
+  }
+
+  output += year * 365; // Add total years
+
+  // Iterate for leap year
+  for (let i = 1; i <= year; i++) {
+    if (i % 4 === 0) output += 1;
+  }
+
+  return output;
+}
+
+function daysDifference(date1, date2) {
+  const totaldays1 = totalDays(date1);
+  const totaldays2 = totalDays(date2);
+
+  return totaldays2 - totaldays1;
+}
+
+const finalResult = daysDifference('01/01/2000', '01/01/2040');
+console.log({ finalResult });
+
+// Test with JS Date method
+const diffInMs =
+  new Date('01/01/2040 00:00:00') - new Date('01/01/2000 00:00:00');
+const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+console.log({ diffInDays });
