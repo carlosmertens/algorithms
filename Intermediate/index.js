@@ -72,31 +72,55 @@ function StopWatch() {
     running,
     duration = 0;
 
-  this.start = function () {
-    if (running) throw new Error('Stopwatch is already started.');
-    running = true;
-    startTime = new Date();
-  };
-  this.stop = function () {
-    if (!running) throw Error('Stopwatch has not yet started.');
-    running = false;
-    endTime = new Date();
-
-    const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
-    duration += seconds;
-  };
-  this.reset = function () {
-    startTime = null;
-    endTime = null;
-    running = false;
-    duration = 0;
-  };
   Object.defineProperty(this, 'duration', {
     get: function () {
       return duration;
     },
+    set: function (value) {
+      duration = value;
+    },
+  });
+
+  Object.defineProperty(this, 'startTime', {
+    get: function () {
+      return startTime;
+    },
+  });
+
+  Object.defineProperty(this, 'endTime', {
+    get: function () {
+      return endTime;
+    },
+  });
+
+  Object.defineProperty(this, 'running', {
+    get: function () {
+      return running;
+    },
   });
 }
+
+StopWatch.prototype.start = function () {
+  if (this.running) throw new Error('Stopwatch is already started.');
+  this.running = true;
+  this.startTime = new Date();
+};
+
+StopWatch.prototype.stop = function () {
+  if (!this.running) throw Error('Stopwatch has not yet started.');
+  this.running = false;
+  this.endTime = new Date();
+
+  const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+  this.duration += seconds;
+};
+
+StopWatch.prototype.reset = function () {
+  this.startTime = null;
+  this.endTime = null;
+  this.running = false;
+  this.duration = 0;
+};
 
 console.log('\n********** Street Fight ***********');
 // Inplement street fight game with object and methods
@@ -143,23 +167,13 @@ console.log('\n********** Calculate Days ***********');
 // Print those days on terminal using the console.log
 ////////////////////////////
 
-// const result1 = totalDays('01/01/08');
-// const result2 = totalDays('20/05/23');
-// console.log({ result1 });
-// console.log({ result2 });
-
-function totalDays(date) {
+function daysTotal(date) {
   const [day, month, year] = date.split('/').map((str) => Number(str));
   const monthsValues = [null, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-  let output = day; // Initialize output with days provided
+  let output = day + year * 365; // Ititialize with days and years provided
 
   // Iterate months excluding actual month
-  for (let i = 1; i < month; i++) {
-    output += monthsValues[i];
-  }
-
-  output += year * 365; // Add total years
+  for (let i = 1; i < month; i++) output += monthsValues[i];
 
   // Iterate for leap year
   for (let i = 1; i <= year; i++) {
@@ -169,18 +183,13 @@ function totalDays(date) {
   return output;
 }
 
-function daysDifference(date1, date2) {
-  const totaldays1 = totalDays(date1);
-  const totaldays2 = totalDays(date2);
+const daysDifference = (date1, date2) => daysTotal(date2) - daysTotal(date1);
 
-  return totaldays2 - totaldays1;
-}
-
-const finalResult = daysDifference('01/01/2000', '01/01/2040');
+const finalResult = daysDifference('01/01/2000', '01/11/2040');
 console.log({ finalResult });
 
 // Test with JS Date method
 const diffInMs =
-  new Date('01/01/2040 00:00:00') - new Date('01/01/2000 00:00:00');
+  new Date('11/01/2040 00:00:00') - new Date('01/01/2000 00:00:00');
 const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 console.log({ diffInDays });
