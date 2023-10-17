@@ -10,7 +10,7 @@ console.log('********** OOP (Object Oriented Programming) ***********');
 // - POLYMORPHISM
 // -- Refactor ugly switch/case statement
 
-console.log('\n********** Object Review **********');
+console.log('\n********** OBJECT REVIEW **********');
 
 // const circle = {
 //   radius: 1,
@@ -62,7 +62,7 @@ const circle1 = new CreateCircle(1, 1, 2);
 
 // console.log('this...', this);
 
-console.log('\n********** Stop Watch **********');
+console.log('\n********** STOP WATCH **********');
 // Stop watch with start, stop and reset methods.
 // Use constructor function
 
@@ -122,7 +122,7 @@ StopWatch.prototype.reset = function () {
   this.duration = 0;
 };
 
-console.log('\n********** Street Fight ***********');
+console.log('\n********** STREET FIGHT ***********');
 // Inplement street fight game with object and methods
 
 let player1 = createPlayer('Ken', 'Helicopter kick', 20);
@@ -156,7 +156,7 @@ const endMessage =
 
 // console.log(endMessage);
 
-console.log('\n********** Calculate Days ***********');
+console.log('\n********** CALCULATE DAYS ***********');
 // Inplement street fight game with object and methods
 // Exercise
 // Create function with (startDay, endDay)
@@ -186,15 +186,15 @@ function daysTotal(date) {
 const daysDifference = (date1, date2) => daysTotal(date2) - daysTotal(date1);
 
 const finalResult = daysDifference('01/01/2000', '01/11/2040');
-console.log({ finalResult });
+// console.log({ finalResult });
 
 // Test with JS Date method
 const diffInMs =
   new Date('11/01/2040 00:00:00') - new Date('01/01/2000 00:00:00');
 const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
-console.log({ diffInDays });
+// console.log({ diffInDays });
 
-console.log('\n********** Sort Books Title ***********');
+console.log('\n********** SORT BOOKS TITLE ***********');
 // Given an array of books, sort them by title, in alphabetical
 // order, from "a" to "z"
 
@@ -279,9 +279,69 @@ function orderByTitle(bookA, bookB) {
 
 let result = [...books].sort(orderByTitle);
 
-console.log(result);
+// console.log(result);
 
-console.log('\n********** HTML Element Interaction ***********');
+console.log('\n********** HTML ELEMENT METHODS ***********');
+
+// Create constructor function (Parent)
+function HtmlElement() {
+  this.click = function () {
+    console.log('Clicked!');
+  };
+}
+// Add focus method to the prototype
+HtmlElement.prototype.focus = function () {
+  console.log('Focus!');
+};
+
+// Create another constructor function (child)
+function HtmlSelectElement(items = []) {
+  this.items = items;
+
+  this.addItem = function (item) {
+    this.items.push(item);
+  };
+
+  this.removeItem = function (item) {
+    this.items.splice(this.items.indexOf(item), 1);
+  };
+
+  this.render = function () {
+    return `
+    <select>${this.items
+      .map(
+        (item) => `
+      <option>${item}</option>`
+      )
+      .join('')}
+    </select>`;
+  };
+}
+// ATENTION
+// Set child prototype to an instance of the parent prototype
+HtmlSelectElement.prototype = new HtmlElement();
+HtmlSelectElement.prototype.constructor = HtmlSelectElement;
+
+// Create another constructor function (child)
+function HtmlImageElement(src) {
+  this.src = src;
+
+  this.render = function () {
+    return `<img> src="${this.src}" />`;
+  };
+}
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.prototype.constructor = HtmlImageElement;
+
+const elem = new HtmlElement();
+// console.log({ elem });
+
+const childElem = new HtmlSelectElement();
+// console.log({ childElem });
+
+const imgElem = new HtmlImageElement('//http:');
+
+console.log('\n********** HTML ELEMENT INTERACTION ***********');
 
 /* Create a HTMLElement class called to represent a generic HTML element.
 
@@ -300,7 +360,7 @@ showHTML(): it prints a string showing the HTML element with its id and classes,
 
 */
 
-class HTMLElement {
+class HTMLClasses {
   constructor(element, id, classList) {
     this.element = element;
     this.id = id;
@@ -333,13 +393,13 @@ class HTMLElement {
   }
 }
 
-const section = new HTMLElement('section', 'about-section', []);
+// const section = new HTMLClasses('section', 'about-section', []);
 
-section.addCSSClass('page-section');
-section.addCSSClass('container');
+// section.addCSSClass('page-section');
+// section.addCSSClass('container');
 
-section.removeCSSClass('container');
-console.log(section.showHTML()); // <section id="about-section" class="page-section container">...</section>
+// section.removeCSSClass('container');
+// console.log(section.showHTML()); // <section id="about-section" class="page-section container">...</section>
 
-const div = new HTMLElement('div', '', []);
-console.log(div.showHTML()); // <div id="" class="">...</div>
+// const div = new HTMLClasses('div', '', []);
+// console.log(div.showHTML()); // <div id="" class="">...</div>
