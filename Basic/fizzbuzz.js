@@ -1,5 +1,5 @@
 console.log('**********  FizzBuzz **********');
-// ***** 1. FizzBuzz algorithm
+// ***** FizzBuzz algorithm
 // If divisible by 3, returns "fizz". If divisible by 5, returns "Buzz". And if divisible by 3 and 5, returns "FizzBuzz"
 
 const output = fizzBuzz(10);

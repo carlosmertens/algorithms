@@ -1,5 +1,5 @@
-console.log('\n********** 3. Calculate Grade **********');
-// ***** 3. Function that calculates the grade of a studend in letters
+console.log('\n********** Calculate Grade **********');
+// ***** Function that calculates the grade of a studend in letters
 // 1-59: F
 // 60-69: D
 // 70-79: C

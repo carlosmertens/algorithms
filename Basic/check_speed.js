@@ -1,5 +1,5 @@
-console.log('\n********** 2. Check Speed **********');
-// ***** 2. CheckSpeed function
+console.log('\n********** Check Speed **********');
+// *****  CheckSpeed function
 // Speed Limit = 70
 // every 5 speed over the limit gets 1 point
 // Use Math.floor()

@@ -1,23 +1,3 @@
-console.log('\n********** 4. Show Primes **********');
-// ***** 4. showPrimes function returns prime numbers base on limit provided.
-
-// showPrimes(10);
-
-function showPrimes(limit) {
-  for (let number = 2; number <= limit; number++) {
-    if (isPrime(number)) {
-      console.log(number);
-    }
-  }
-}
-
-function isPrime(number) {
-  for (let factor = 2; factor < number; factor++)
-    if (number % factor === 0) return false;
-
-  return true;
-}
-
 console.log('\n********** 5. Sum Numerical Array **********');
 // ***** 5. Sum Numerical Array
 // sum all the items in a numerical array using reduce method
