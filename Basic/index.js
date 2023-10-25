@@ -1,20 +1,3 @@
-console.log('\n********** 10. Area of circle **********');
-// 10. Area of Circle
-// Create an object with a metho to calculate the area of a circle
-
-const circle = {
-  radius: 1,
-  get area() {
-    return Math.PI * this.radius * this.radius;
-  },
-};
-
-// console.log(circle.area);
-
-// circle.radius = 2;
-
-// console.log(circle.area);
-
 console.log('\n********** 11. Error Handling **********');
 // 11. ERROR HANDLING
 // Use error handling in a sum items form am erray function.
