@@ -1,0 +1,164 @@
+- Big-O notation
+  \*\* What is Big-O notation?
+
+* a notation for expressing the efficiency of an algorithm
+  \*\* What is an algorithm?
+* an algorithm is a well-defined procedure for carrying out a well-defined task in a finite number of steps
+* an algorithm takes a set of values as input and produces a value or set of values as output
+* an algorithm is not a computer program but the idea behind a computer program
+* algorithms can be specified independently of the programming language used to implement them and the computers used to execute them
+* example of an algorithm: insertion sort - a well-defined sorting procedure
+  \*\* What is algorithm efficiency?
+* the ratio of the size of the task to the amount of resources required to complete the it
+* two resources in particular:
+  - the time needed to run the algorithm (running time)
+  - the amount of memory needed (memory space)
+* let's focus on running time
+  \*\* How to measure running time and memory space?
+* problem:the actual running time and the actual memory space needed depend on the actual hardware and software used
+* what we need is a way of describing running time and memory space that is independent of actual implementations
+* solution:
+  - a hypothetical computer (an idealized model): the Random Access Machine (RAM): doesn't assume any specific computer architecture
+  - ordinary language or pseudo-code: doesn't assume any specific programming language
+    ** How to measure running time (time complexity) and memory used (space complexity) on the RAM
+    ** The RAM Model of computation
+* each simple operation takes exactly one time step
+* loops and subroutines are not simple operations
+* each memory access takes exactly one time step
+* we have as much memory as we need
+  \*\* Time complexity on the RAM model
+* measured in terms of the number of steps needed to carry out a task on the RAM
+* the number of steps needed to carry out a task on the RAM depends on
+  - the size of the input (sorting a million numbers takes more steps than sorting ten)
+  - the way in which the elements of the input are arranged (sorting n numbers may require more or fewer steps depending on the order of the numbers)
+* the time complexity of an algorithm is a function of the input size and of the ordering / arrangement of the input elements
+  [images]
+  ** 3 kinds of time complexity
+  each represents running time as a function of input size \*** worst-case complexity
+* worst(n) = the maximum number of steps for input of size n
+  \*\*\* best-case complexity
+* best(n) = the minimum number of steps for input of size n
+  \*\*\* average-case complexity
+* average(n) = the average number of steps for input of size n
+  ** best (most useful) measure of complexity: worst-case complexity (the maximum number of steps for input size n)
+  ** Problems with actual complexity functions:
+* hard to specify since they depend on a lot of detail
+* very complicated and difficult to work with
+* the benefit of using these precise functions is outweighed by the cost, since the bumps of the actual function usually make no practical difference
+* what really matters is the behavior of the function for very large n
+  \*\* Solution: Big-O Notation
+* Big-O Notation ignores irrelevant detail; simplifies the actual function
+  \*\* How does Big-O simplify things?
+* it does not look at the actual complexity function but at an upper bound
+  ** 3 functions \*** Big-O
+* looks at an upper bound of the time complexity function
+  \*\*\* Big-Omega
+* looks at a lower bound of the time complexity function
+  \*\*\* Big-Theta
+* looks at both an upper and a lower bound of the time complexity function
+  ** Definitions \*** f(n) = O(g(n))
+* c \* g(n) is an upper bound on f(n), i.e.,
+* there exist constants c and n', such that, for all n >= n', f(n) <= c \* g(n)
+  \*\*\* f(n) = Omega(g(n))
+* c \* g(n) is a lower bound on f(n), i.e.,
+* there exist constants c and n', such that, for all n >= n', f(n) >= c \* g(n)
+  \*\*\* f(n) = Theta(g(n))
+* c _ g(n) is an upper bound on f(n) and c' _ g(n) is a lower bound on f(n), i.e.,
+* there exist constants c, c', and n', such that, for all n >= n',
+  - f(n) <= c \* g(n)
+  - f(n) >= c' \* g(n)
+    \*\* Examples:
+* f(n) = 3n^2 - 100n + 6 = O(n^2), because for c = 3, 3n^2 > f(n)
+* f(n) = 3n^2 - 100n + 6 = O(n^3), because for c = 1, n^3 > f(n), when n > 3
+* f(n) = 3n^2 - 100n + 6 != O(n), because for c > 3, cn < f(n), when n > (c + 100)/3
+  \*\* Dominance relations
+* faster growing functions dominate slower growing functions
+* n! > 2^n > n^3 > n^2 > n log n > n > log n > 1
+  \*\* Rules of simplification
+* f(n) + g(n) = O(Max(f(n), g(n)))
+* c \* g(n) = O(g(n))
+  ** Examples ([[https://www.doabledanny.com/big-o-notation-in-javascript#2][DoableDanny, Big-O Notation in JavaScript]]) \*** O(1): constant time
+  #+begin_src js
+  function double(n) {
+  return 2 \* n;
+  }
+  double(1); // 2
+  double(2); // 4
+  #+end_src
+  **_ O(n): linear time
+  #+begin_src js
+  function reverseArray(arr) {
+  let newArr = []
+  for (let i = arr.length - 1; i >= 0; i--) {
+  newArr.push(arr[i])
+  }
+  return newArr
+  }
+  const reversedArray1 = reverseArray([1, 2, 3]) // [3, 2, 1]
+  const reversedArray2 = reverseArray([1, 2, 3, 4, 5, 6]) // [6, 5, 4, 3, 2, 1]
+  #+end_src
+  _** O(n^2): quadratic time
+  #+begin_src js
+  function multiplyAll(arr1, arr2) {
+  if (arr1.length !== arr2.length) return undefined
+  let total = 0
+  for (let i of arr1) {
+  for (let j of arr2) {
+  total += i \* j
+  }
+  }
+  return total
+  }
+  let result1 = multiplyAll([1, 2], [5, 6]) // 33
+  let result2 = multiplyAll([1, 2, 3, 4], [5, 3, 1, 8]) // 170
+  #+end_src
+  **_ O(log n): logarithmic time
+  #+begin_src js
+  function logTime(arr) {
+  let numberOfLoops = 0
+  for (let i = 1; i < arr.length; i _= 2) {
+  numberOfLoops++
+  }
+  return numberOfLoops
+  }
+  let loopsA = logTime([1]) // 0 loops
+  let loopsB = logTime([1, 2]) // 1 loop
+  let loopsC = logTime([1, 2, 3, 4]) // 2 loops
+  let loopsD = logTime([1, 2, 3, 4, 5, 6, 7, 8]) // 3 loops
+  let loopsE = logTime(Array(16)) // 4 loops
+  #+end_src \*** O(n log n): linearithmic time
+  #+begin_src js
+  function linearithmic(n) {
+  for (let i = 0; i < n; i++) {
+  for (let j = 1; j < n; j = j \* 2) {
+  console.log("Hello")
+  }
+  }
+  }
+  #+end_src
+  **_ O(2^n): exponential time
+  #+begin_src js
+  function fibonacci(num) {
+  // Base cases
+  if (num === 0) return 0
+  else if (num === 1) return 1
+  // Recursive part
+  return fibonacci(num - 1) + fibonacci(num - 2)
+  }
+  fibonacci(1) // 1
+  fibonacci(2) // 1
+  fibonacci(3) // 2
+  fibonacci(4) // 3
+  fibonacci(5) // 5
+  #+end_src
+  _** O(n!): factorial time
+  #+begin_src js
+  function factorial(n) {
+  let num = n
+  if (n === 0) return 1
+  for (let i = 0; i < n; i++) {
+  num = n \* factorial(n - 1)
+  }
+  return num
+  }
+  #+end_src

@@ -167,6 +167,10 @@ console.log('\n********** CALCULATE DAYS ***********');
 // Print those days on terminal using the console.log
 ////////////////////////////
 
+function isLeapYear(year) {
+  return year % 100 === 0 ? year % 400 === 0 : year % 4 === 0;
+}
+
 function daysTotal(date) {
   const [day, month, year] = date.split('/').map((str) => Number(str));
   const monthsValues = [null, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
