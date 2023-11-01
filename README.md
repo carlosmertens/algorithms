@@ -2,9 +2,19 @@
 
 Collection of JS algorithms from basic to advance
 
-## JavaScript (JS)
+## JavaScript (JS) or ECMAScript standard
 
-JS is a high level, object oriented programming language. JS is also a multi paradigm language, meaning you can use different programming styles (imperative, declarative, etc)
+JS is ...
+
+- High-Level programming language
+- Interpreted or just-in-time compilation
+- Prototype-based object-oriented
+- Multi-paradigm (Procedural, OOP, Functional programming )
+- First-class function
+- Dynamic
+- Single-threaded
+- Non-blocking event loop
+- Garbage-collected
 
 ## Basic Algorithms
 
