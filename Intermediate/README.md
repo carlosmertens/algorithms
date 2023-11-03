@@ -11,7 +11,6 @@
 - OOP is a programming paradigm based on the concept of objects.
 - Objects are used to model/describe real world or abstract features.
 - In OPP, objects are self-contained block of codes.
-- Uses classes or factory functions or constructor functions to create templates of objects.
 
 ### Principles
 
@@ -35,5 +34,15 @@
 - Refactor code that is inherited.
 - Instances can improve the logic inherited from a class
 
+### OOP in JS
+
+- In JS, we can accomplish OOP with:
+  - ES6 classes, Factory Functions or Constructor Functions.
+  - Prototypal inheritance.
+  - All objects in JS delegate their behavior (prtotypes) to instances.
+  - Methods and properties.
+  - Getters and Setters.
+
 [objects.js](/Intermediate/objects.js)
 [oop.js](/Intermediate/oop.js)
+[stopwatch.js](/Intermediate/stopwatch.js)
