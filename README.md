@@ -1,6 +1,8 @@
 # ALGORITHMS
 
-Collection of JS algorithms from basic to advance
+Collection of JS algorithms from basic to advance.
+
+However, this project is more than just a collection of algorithm, it is also a collection of concepts, knowledge, opinion and tips form my favorites teachers.
 
 ## JavaScript (JS) or ECMAScript standard
 
@@ -21,3 +23,8 @@ JS is ...
 ## Intermediate Algorithms
 
 ## Advance Algorithms
+
+## Acknowledgment
+
+- Jonas
+- Mosh

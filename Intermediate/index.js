@@ -1,14 +1,4 @@
 console.log('*************** INTERMEDIATE  ALGORITHMS ***************');
-console.log('********** OOP (Object Oriented Programming) ***********');
-// OOP (Object Oriented Programming)
-// - ENCAPSULATION
-// -- Reduce complexity + increase reusability
-// - ABSTRACTION
-// -- Reduce complexity + isolate impact of changes
-// - INHERITANCE
-// -- Eliminate redundant code
-// - POLYMORPHISM
-// -- Refactor ugly switch/case statement
 
 console.log('\n********** OBJECT REVIEW **********');
 
