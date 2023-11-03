@@ -19,7 +19,7 @@ function createCircle(radius) {
 // Constructor function
 function Circle(radius) {
   this.radius = radius;
-  this.draw = function () {};
+  this.draw = function () {}; // Bad practice
 }
 
 // Every object has a "constructor" property which returns the function that was used to construct or create that object.

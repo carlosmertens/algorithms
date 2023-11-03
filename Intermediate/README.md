@@ -39,7 +39,7 @@
 - In JS, we can accomplish OOP with:
   - ES6 classes, Factory Functions or Constructor Functions.
   - Prototypal inheritance.
-  - All objects in JS delegate their behavior (prtotypes) to instances.
+  - All objects in JS delegate their behavior (prototypes) to instances.
   - Methods and properties.
   - Getters and Setters.
 
