@@ -4,7 +4,9 @@
 
 - Function calling itself until a condition is met.
 
-[fibonacci.js](/Intermediate/fibonacci.js)
+### Source code
+
+- [fibonacci.js](/Intermediate/fibonacci.js)
 
 ## Object Oriented Programming (OOP)
 
@@ -43,6 +45,8 @@
   - Methods and properties.
   - Getters and Setters.
 
-[objects.js](/Intermediate/objects.js)
-[oop.js](/Intermediate/oop.js)
-[stopwatch.js](/Intermediate/stopwatch.js)
+### Source code
+
+- [objects.js](/Intermediate/objects.js)
+- [oop.js](/Intermediate/oop.js)
+- [stopwatch.js](/Intermediate/stopwatch.js)

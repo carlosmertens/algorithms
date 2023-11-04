@@ -57,3 +57,68 @@ console.log(
   'Therefore, Person.__proto__ === Object.__proto__:',
   Person.__proto__ === Object.__proto__
 );
+
+/*
+// CODING EXERCISE 
+- Use a construction function to implement a Car
+- A Car has a make and a speed properties
+- The speed property is the current speed of the car in km/h
+- Implement an "accelerate" method that increases speed by 10 and log new speed
+- Implement a "break" method that will decrease spped by 5 and log new speed
+
+DATA 1: "BMW" going at 120 km/h
+DATA 2: "Mercedes" going at 95 km/h
+*/
+console.log('***** CODING EXERCISE *****');
+
+function Car(make, currentSpeed) {
+  this.make = make;
+  this.currentSpeed = currentSpeed;
+}
+
+Car.prototype.accelerate = function () {
+  this.currentSpeed += 10;
+  console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
+};
+
+Car.prototype.break = function () {
+  this.currentSpeed -= 5;
+  console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
+};
+
+const car1 = new Car('BMW', 120);
+const car2 = new Car('Mercedes', 95);
+
+console.log(car1);
+car1.accelerate();
+car1.accelerate();
+car1.break();
+console.log(car1);
+
+console.log('********** ES6 CLASSES **********');
+/*
+///// ES6 CLASSES /////
+
+- Classes are NOT hoisted
+- Classes are executed in strict mode
+- The properties are declare in the constructor method
+- Class methods outside the constructor, will be created on the prototype
+
+*/
+
+class Employee {
+  constructor(firstName, lastName, position) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.position = position;
+  }
+
+  info() {
+    console.log(`*** ${this.firstName} ${this.lastName}, ${this.position} ***`);
+  }
+}
+
+const employee1 = new Employee('Carlos', 'Mertens', 'Developer');
+
+console.log(employee1);
+employee1.info();

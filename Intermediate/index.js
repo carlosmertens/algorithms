@@ -391,3 +391,16 @@ class Stack {
     return _stack.get(this).length;
   }
 }
+
+console.log('\n********** Unique Array ***********');
+// Create own method to retur unique elements of an array
+// Add the method to the Array.prototype
+// For experimentation but is bad practice
+
+const arr = [3, 66, 5, 77, 43, 66, 5, 8, 8, 66];
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
