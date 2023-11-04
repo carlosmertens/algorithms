@@ -2,7 +2,7 @@
 
 Collection of JS algorithms from basic to advance.
 
-However, this project is more than just a collection of algorithm, it is also a collection of concepts, knowledge, opinion and tips form my favorites teachers.
+However, this repo is more than just a collection of algorithm, it is also a collection of concepts, knowledge, opinion and tips from my favorites teachers and me to my future mes.
 
 ## JavaScript (JS) or ECMAScript standard
 
@@ -18,11 +18,13 @@ JS is ...
 - Non-blocking event loop
 - Garbage-collected
 
-## Basic Algorithms
+## Folder structure
 
-## Intermediate Algorithms
+### Basic Algorithms
 
-## Advance Algorithms
+### Intermediate Algorithms
+
+### Advance Algorithms
 
 ## Acknowledgment
 
