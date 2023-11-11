@@ -59,7 +59,7 @@ console.log(
 );
 
 /*
-// CODING EXERCISE 
+// CODING EXERCISE 1
 - Use a construction function to implement a Car
 - A Car has a make and a speed properties
 - The speed property is the current speed of the car in km/h
@@ -69,7 +69,7 @@ console.log(
 DATA 1: "BMW" going at 120 km/h
 DATA 2: "Mercedes" going at 95 km/h
 */
-console.log('***** CODING EXERCISE *****');
+console.log('***** CODING EXERCISE 1 *****');
 
 function Car(make, currentSpeed) {
   this.make = make;
@@ -122,3 +122,47 @@ const employee1 = new Employee('Carlos', 'Mertens', 'Developer');
 
 console.log(employee1);
 employee1.info();
+
+/*
+// CODING EXERCISE 2
+- Re-create exercise 1 with ES6 class;
+- Add a getter called "speedUS" that retuns the speed in miles (mi/h)
+- km / 1.6 = mi
+- Add setter called "sppedUS" which sets the current speed in mi/h (but converts it to km/h before stroring the value, by multiplying by 1.6) 
+
+DATA 1: "BMW" going at 120 km/h
+DATA 2: "Mercedes" going at 95 km/h
+*/
+console.log('***** CODING EXERCISE 2 *****');
+
+class CarCL {
+  constructor(make, currentSpeed) {
+    this.make = make;
+    this.currentSpeed = currentSpeed;
+  }
+
+  accelerate() {
+    this.currentSpeed += 10;
+    console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
+  }
+
+  break() {
+    this.currentSpeed -= 5;
+    console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
+  }
+
+  get speedUS() {
+    return this.currentSpeed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.currentSpeed = speed * 1.6;
+  }
+}
+
+const ford = new CarCL('Ford', 120);
+console.log(ford.speedUS);
+ford.accelerate();
+console.log(ford.speedUS);
+ford.speedUS = 50;
+console.log(ford);
