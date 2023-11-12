@@ -45,6 +45,16 @@
   - Methods and properties.
   - Getters and Setters.
 
+#### Constructor Functions
+
+- Use function declaration expression to build an object template
+- Never use arrow function
+- Use the keyword "new" to initialize an instance
+  1. New {} is created
+  2. Function is called, this = {}
+  3. {} is linked to prototype object
+  4. function automatically return {}
+
 ### Source code
 
 - [objects.js](/Intermediate/objects.js)

@@ -1,26 +1,14 @@
 'use strict';
 
-// console.log('********** OBJECT ORIENTED PROGRAMMING (OOP) **********');
-
 console.log('********** CONSTRUCTOR FUNCTIONS **********');
-/*
-///// CONSTRUCTOR FUNCTIONS /////
 
-- Use function declaration expression to build an object template 
-- Never use arrow function 
-- Use the keyword "new" to initialize an instance
-  1. New {} is created
-  2. Function is called, this = {}
-  3. {} is linked to prototype object
-  4. function automatically return {}
+console.log('// *** Example 1 (Person/Studen Objects) *** //');
 
-*/
-
-// Create a construction function Person (base)
-const Person = function (firstName, birthYear) {
+// *** Create a construction function *** //
+function Person(firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
-};
+}
 
 // Initialize instances carlos and daniel (children)
 const carlos = new Person('Carlos', 1980);
@@ -36,7 +24,7 @@ const danielAge = daniel.age();
 // Add property to Person prototype (base)
 Person.prototype.species = 'Human';
 
-// Prototype chain tests //
+// *** Test Prototype chain *** //
 
 // console.log({ daniel });
 // console.log('daniel.__proto__:', daniel.__proto__);
@@ -59,18 +47,28 @@ Person.prototype.species = 'Human';
 //   Person.__proto__ === Object.__proto__
 // );
 
-/*
-// CODING EXERCISE 1
-- Use a construction function to implement a Car
-- A Car has a make and a speed properties
-- The speed property is the current speed of the car in km/h
-- Implement an "accelerate" method that increases speed by 10 and log new speed
-- Implement a "break" method that will decrease spped by 5 and log new speed
+// *** Inheritance between constructor functions *** //
+function Student(firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+}
 
-DATA 1: "BMW" going at 120 km/h
-DATA 2: "Mercedes" going at 95 km/h
-*/
-// console.log('***** CODING EXERCISE 1 *****');
+// Link Student prototype to Person prototype
+Student.prototype = Object.create(Person.prototype);
+// Set constructor function to Student
+Student.prototype.constructor = Student;
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 1990, 'Computer Science');
+mike.introduce();
+console.log(mike.age());
+
+////////////////////////////////////////////////////////////////////////////////
+
+console.log('// *** Example 2 (Car/EV Objects) *** //');
 
 function Car(make, currentSpeed) {
   this.make = make;
@@ -91,40 +89,10 @@ const car1 = new Car('BMW', 120);
 const car2 = new Car('Mercedes', 95);
 
 // console.log(car1);
+car1.accelerate();
 // car1.accelerate();
-// car1.accelerate();
-// car1.break();
+car1.break();
 // console.log(car1);
-
-// Inheritance between constructor functions //
-
-function Student(firstName, birthYear, course) {
-  Person.call(this, firstName, birthYear);
-  this.course = course;
-}
-
-// Link Student prototype to Person prototype
-Student.prototype = Object.create(Person.prototype);
-// Set constructor function to Student
-Student.prototype.constructor = Student;
-
-Student.prototype.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
-
-const mike = new Student('Mike', 1990, 'Computer Science');
-// mike.introduce();
-// console.log(mike.age());
-
-/*
-// CODING EXERCISE 3
-1. Use a construction function to implement an Electric Car (called EV) as a child class of Car. Besides a "make" and "currentSpeed", the EV also has the current battery charge property "charge" in %
-2. Implement a "chargeBattery" method which takes an argument "chargeTo" and sets the battery charge to "chargeTo"
-3. Implement an "accelerate" method that will increase the car speed by 20 and decrease the "charge" by 1%. Then log the message like this: "Tesla going at 140 km/h with a charge of 22%"
-
-DATA CAR 1: 'Tesla going at 120 km/h, with a charge of 23%'
-*/
-console.log('***** CODING EXERCISE 3 *****');
 
 function EV(make, currentSpeed, currentCharge) {
   Car.call(this, make, currentSpeed);
@@ -137,6 +105,7 @@ EV.prototype.constructor = EV;
 EV.prototype.chargeBattery = function (chargeTo) {
   this.currentCharge = chargeTo;
 };
+
 EV.prototype.accelerate = function () {
   this.currentSpeed += 20;
   this.currentCharge--;
@@ -152,6 +121,9 @@ tesla.chargeBattery(90);
 tesla.accelerate();
 tesla.accelerate();
 tesla.break();
+
+////////////////////////////////////////////////////////////////////////////////
+
 console.log('********** ES6 CLASSES **********');
 /*
 ///// ES6 CLASSES /////
