@@ -1,8 +1,7 @@
 'use strict';
 
-console.log('********** CONSTRUCTOR FUNCTIONS **********');
-
-console.log('// *** Example 1 (Person/Studen Objects) *** //');
+console.log('// *************** CONSTRUCTOR FUNCTIONS *************** //');
+console.log('\n>>> Example 1 (Person/Studen Objects)\n');
 
 // *** Create a construction function *** //
 function Person(firstName, birthYear) {
@@ -68,7 +67,7 @@ console.log(mike.age());
 
 ////////////////////////////////////////////////////////////////////////////////
 
-console.log('// *** Example 2 (Car/EV Objects) *** //');
+console.log('\n>>> Example 2 (Car/EV Objects)\n');
 
 function Car(make, currentSpeed) {
   this.make = make;
@@ -124,17 +123,11 @@ tesla.break();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-console.log('********** ES6 CLASSES **********');
-/*
-///// ES6 CLASSES /////
+console.log('\n// *************** ES6 CLASSES *************** //\n');
 
-- Classes are NOT hoisted
-- Classes are executed in strict mode
-- The properties are declare in the constructor method
-- Class methods outside the constructor, will be created on the prototype
+console.log('>>> Example 1 (Employee Objects)\n');
 
-*/
-
+// *** Create a ES6 Class Object *** //
 class Employee {
   constructor(firstName, lastName, position) {
     this.firstName = firstName;
@@ -143,26 +136,18 @@ class Employee {
   }
 
   info() {
-    console.log(`*** ${this.firstName} ${this.lastName}, ${this.position} ***`);
+    console.log(`${this.firstName} ${this.lastName}, ${this.position}`);
   }
 }
 
 const employee1 = new Employee('Carlos', 'Mertens', 'Developer');
 
 // console.log(employee1);
-// employee1.info();
+employee1.info();
 
-/*
-// CODING EXERCISE 2
-- Re-create exercise 1 with ES6 class;
-- Add a getter called "speedUS" that retuns the speed in miles (mi/h)
-- km / 1.6 = mi
-- Add setter called "sppedUS" which sets the current speed in mi/h (but converts it to km/h before stroring the value, by multiplying by 1.6) 
+////////////////////////////////////////////////////////////////////////////////
 
-DATA 1: "BMW" going at 120 km/h
-DATA 2: "Mercedes" going at 95 km/h
-*/
-// console.log('***** CODING EXERCISE 2 *****');
+console.log('\n>>> Example 2 (CarCL Object)\n');
 
 class CarCL {
   constructor(make, currentSpeed) {
@@ -191,7 +176,7 @@ class CarCL {
 
 const ford = new CarCL('Ford', 120);
 // console.log(ford.speedUS);
-// ford.accelerate();
-// console.log(ford.speedUS);
+ford.accelerate();
+console.log(ford.speedUS);
 ford.speedUS = 50;
-// console.log(ford);
+console.log(ford);

@@ -55,6 +55,13 @@
   3. {} is linked to prototype object
   4. function automatically return {}
 
+#### ES6 Classes
+
+- Classes are NOT hoisted
+- Classes are executed in strict mode
+- The properties are declare in the constructor method
+- Class methods outside the constructor, will be created on the prototype
+
 ### Source code
 
 - [objects.js](/Intermediate/objects.js)
