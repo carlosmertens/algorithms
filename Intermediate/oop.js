@@ -36,27 +36,28 @@ const danielAge = daniel.age();
 // Add property to Person prototype (base)
 Person.prototype.species = 'Human';
 
-// Prototype chain
-console.log({ daniel });
-console.log('daniel.__proto__:', daniel.__proto__);
-console.log('daniel.prototype:', daniel.prototype);
+// Prototype chain tests //
 
-console.log({ Person });
-console.log('Person.__proto__:', Person.__proto__);
-console.log('Person.prototype:', Person.prototype);
+// console.log({ daniel });
+// console.log('daniel.__proto__:', daniel.__proto__);
+// console.log('daniel.prototype:', daniel.prototype);
 
-console.log(
-  'Therefore, Person.prototype === daniel.__proto__:',
-  Person.prototype === daniel.__proto__
-);
+// console.log({ Person });
+// console.log('Person.__proto__:', Person.__proto__);
+// console.log('Person.prototype:', Person.prototype);
 
-console.log({ Object });
-console.log('Object.__proto__:', Object.__proto__);
-console.log('Object.prototype:', Object.prototype);
-console.log(
-  'Therefore, Person.__proto__ === Object.__proto__:',
-  Person.__proto__ === Object.__proto__
-);
+// console.log(
+//   'Therefore, Person.prototype === daniel.__proto__:',
+//   Person.prototype === daniel.__proto__
+// );
+
+// console.log({ Object });
+// console.log('Object.__proto__:', Object.__proto__);
+// console.log('Object.prototype:', Object.prototype);
+// console.log(
+//   'Therefore, Person.__proto__ === Object.__proto__:',
+//   Person.__proto__ === Object.__proto__
+// );
 
 /*
 // CODING EXERCISE 1
@@ -69,7 +70,7 @@ console.log(
 DATA 1: "BMW" going at 120 km/h
 DATA 2: "Mercedes" going at 95 km/h
 */
-console.log('***** CODING EXERCISE 1 *****');
+// console.log('***** CODING EXERCISE 1 *****');
 
 function Car(make, currentSpeed) {
   this.make = make;
@@ -89,12 +90,68 @@ Car.prototype.break = function () {
 const car1 = new Car('BMW', 120);
 const car2 = new Car('Mercedes', 95);
 
-console.log(car1);
-car1.accelerate();
-car1.accelerate();
-car1.break();
-console.log(car1);
+// console.log(car1);
+// car1.accelerate();
+// car1.accelerate();
+// car1.break();
+// console.log(car1);
 
+// Inheritance between constructor functions //
+
+function Student(firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+}
+
+// Link Student prototype to Person prototype
+Student.prototype = Object.create(Person.prototype);
+// Set constructor function to Student
+Student.prototype.constructor = Student;
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 1990, 'Computer Science');
+// mike.introduce();
+// console.log(mike.age());
+
+/*
+// CODING EXERCISE 3
+1. Use a construction function to implement an Electric Car (called EV) as a child class of Car. Besides a "make" and "currentSpeed", the EV also has the current battery charge property "charge" in %
+2. Implement a "chargeBattery" method which takes an argument "chargeTo" and sets the battery charge to "chargeTo"
+3. Implement an "accelerate" method that will increase the car speed by 20 and decrease the "charge" by 1%. Then log the message like this: "Tesla going at 140 km/h with a charge of 22%"
+
+DATA CAR 1: 'Tesla going at 120 km/h, with a charge of 23%'
+*/
+console.log('***** CODING EXERCISE 3 *****');
+
+function EV(make, currentSpeed, currentCharge) {
+  Car.call(this, make, currentSpeed);
+  this.currentCharge = currentCharge;
+}
+
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.constructor = EV;
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.currentCharge = chargeTo;
+};
+EV.prototype.accelerate = function () {
+  this.currentSpeed += 20;
+  this.currentCharge--;
+  console.log(
+    `${this.make} is going at ${this.currentSpeed} km/h, with a battery charge of ${this.currentCharge}`
+  );
+};
+
+const tesla = new EV('Tesla', 120, 25);
+// console.log(tesla);
+tesla.chargeBattery(90);
+// console.log(tesla);
+tesla.accelerate();
+tesla.accelerate();
+tesla.break();
 console.log('********** ES6 CLASSES **********');
 /*
 ///// ES6 CLASSES /////
@@ -120,8 +177,8 @@ class Employee {
 
 const employee1 = new Employee('Carlos', 'Mertens', 'Developer');
 
-console.log(employee1);
-employee1.info();
+// console.log(employee1);
+// employee1.info();
 
 /*
 // CODING EXERCISE 2
@@ -133,7 +190,7 @@ employee1.info();
 DATA 1: "BMW" going at 120 km/h
 DATA 2: "Mercedes" going at 95 km/h
 */
-console.log('***** CODING EXERCISE 2 *****');
+// console.log('***** CODING EXERCISE 2 *****');
 
 class CarCL {
   constructor(make, currentSpeed) {
@@ -161,8 +218,8 @@ class CarCL {
 }
 
 const ford = new CarCL('Ford', 120);
-console.log(ford.speedUS);
-ford.accelerate();
-console.log(ford.speedUS);
+// console.log(ford.speedUS);
+// ford.accelerate();
+// console.log(ford.speedUS);
 ford.speedUS = 50;
-console.log(ford);
+// console.log(ford);
