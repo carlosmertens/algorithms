@@ -145,6 +145,24 @@ const employee1 = new Employee('Carlos', 'Mertens', 'Developer');
 // console.log(employee1);
 employee1.info();
 
+// *** Inheritance between constructor functions *** //
+class Intern extends Employee {
+  constructor(firstName, lastName, department) {
+    super(firstName, lastName);
+    this.position = 'Intern';
+    this.department = department;
+  }
+
+  greet() {
+    console.log(`Hi! My name is ${this.firstName}, the new intern!`);
+  }
+}
+
+const intern1 = new Intern('Pedro', 'Perez', 'Accounting');
+
+intern1.greet();
+intern1.info();
+
 ////////////////////////////////////////////////////////////////////////////////
 
 console.log('\n>>> Example 2 (CarCL Object)\n');
@@ -180,3 +198,83 @@ ford.accelerate();
 console.log(ford.speedUS);
 ford.speedUS = 50;
 console.log(ford);
+
+////////////////////////////////////////////////////////////////////////////////
+
+console.log('\n>>> Example 3 (Account Object)\n');
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    // Protected property (by convention)
+    this._movements = [];
+    this.locale = 'navigator.language';
+  }
+
+  deposit(val) {
+    this._movements.push(val);
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  balance() {
+    let amount =
+      this._movements.length < 1
+        ? 'No movements!'
+        : this._movements.reduce((acc, val) => (acc += val), 0);
+
+    console.log(`Your balance: ${this.currency} ${amount}`);
+  }
+}
+
+const acc1 = new Account('Arnie', 'EUR', 8989);
+acc1.deposit(200);
+acc1.withdraw(135);
+acc1.balance();
+
+console.log('\n// *************** OBJECT.CREATE *************** //\n');
+
+console.log('>>> Example 1 (PersonProto Objects)\n');
+
+// *** Create object with Object.create *** //
+const PersonProto = {
+  age() {
+    console.log(2023 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const ana = Object.create(PersonProto);
+
+console.log(ana);
+
+ana.init('Ana', 1997);
+console.log(ana);
+
+ana.age();
+
+// *** Inheritance between Object.create objects *** //
+// Objective:
+// Object.prototype -> Person
+
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+const jay = Object.create(StudentProto);
+console.log(jay);
+
+jay.init('Jay', 1995, 'Python');
+console.log(jay);
+jay.age();
