@@ -165,7 +165,7 @@ intern1.info();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-console.log('\n>>> Example 2 (CarCL Object)\n');
+console.log('\n>>> Example 2 (CarCL/EVcl Object)\n');
 
 class CarCL {
   constructor(make, currentSpeed) {
@@ -199,35 +199,104 @@ console.log(ford.speedUS);
 ford.speedUS = 50;
 console.log(ford);
 
+class EVcl extends CarCL {
+  #currentCharge;
+  constructor(make, currentSpeed, currentCharge) {
+    super(make, currentSpeed);
+    this.#currentCharge = currentCharge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#currentCharge = chargeTo;
+    console.log('Battery is now at:', this.#currentCharge);
+
+    return this;
+  }
+
+  displayInfo() {
+    console.log(
+      `${this.make} is going at ${
+        this.currentSpeed
+      } km/h, with a battery charge of ${this.#currentCharge}`
+    );
+  }
+
+  accelerate() {
+    this.currentSpeed += 20;
+    this.#currentCharge--;
+    this.displayInfo();
+
+    return this;
+  }
+
+  break() {
+    this.#currentCharge--;
+    this.currentSpeed -= 10;
+    this.displayInfo();
+
+    return this;
+  }
+}
+
+const rivian = new EVcl('Rivian', 100, 50);
+console.log(rivian);
+rivian.chargeBattery(80);
+rivian.accelerate();
+rivian.accelerate();
+rivian.break();
+rivian.accelerate().break().break().break();
+
 ////////////////////////////////////////////////////////////////////////////////
 
 console.log('\n>>> Example 3 (Account Object)\n');
+// Let's explore the future of classes in JS
 
 class Account {
+  // PUBLIC FIELD
+  // Protected property (by convention) using _
+  _locale = 'navigator.language';
+
+  // PRIVATE FIELD
+  // Protected property with #
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    // Protected property (by convention)
-    this._movements = [];
-    this.locale = 'navigator.language';
+    this.#pin = pin; // Needed to be initialized outside the constructor
   }
 
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
+
+    // Return this will set methods to be chaining
+    // z.B -> acc1.deposit(100).withdraw(50).deposit(400)
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+
+    return this;
   }
 
   balance() {
     let amount =
-      this._movements.length < 1
+      this.#movements.length < 1
         ? 'No movements!'
-        : this._movements.reduce((acc, val) => (acc += val), 0);
+        : this.#movements.reduce((acc, val) => (acc += val), 0);
 
     console.log(`Your balance: ${this.currency} ${amount}`);
+
+    return this;
+  }
+
+  // Static methods are not inherited
+  static helper() {
+    console.log('Helper Method!');
+
+    return this;
   }
 }
 
@@ -235,6 +304,7 @@ const acc1 = new Account('Arnie', 'EUR', 8989);
 acc1.deposit(200);
 acc1.withdraw(135);
 acc1.balance();
+// console.log(acc1.#movements);
 
 console.log('\n// *************** OBJECT.CREATE *************** //\n');
 
