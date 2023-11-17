@@ -1,4 +1,6 @@
-'use strict';
+console.log('\n********** Find Number In Array **********');
+// Recursive approach
+// Function takes 2 parameters, a number to find and an array (could be nested arrays) where to fin the number.
 
 function findNumInArr(n, arr) {
   let hasNum = false;

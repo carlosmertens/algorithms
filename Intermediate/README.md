@@ -7,6 +7,7 @@
 ### Source code
 
 - [fibonacci.js](/Intermediate/fibonacci.js)
+- [find_num_in_arr.js](/Intermediate/find_num_in_arr.js)
 
 ## Object Oriented Programming (OOP)
 
