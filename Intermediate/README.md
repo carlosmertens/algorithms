@@ -67,4 +67,4 @@
 - [objects.js](/Intermediate/objects.js)
 - [oop.js](/Intermediate/oop.js)
 - [stopwatch.js](/Intermediate/stopwatch.js)
-- [product_review](/Intermediate//product_reviews/)
+- [product_review](/Intermediate/product-reviews/)
