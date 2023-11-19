@@ -3,3 +3,5 @@ const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
 console.log(airline.slice(airline.indexOf('Air')));
+
+console.log(airline.replaceAll('r', 'x'));
