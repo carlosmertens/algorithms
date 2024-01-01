@@ -64,3 +64,33 @@ Array.prototype.unique = function () {
 };
 
 // console.log(arr.unique());
+// let newArr = [1, 2, 3];
+// console.log(newArr);
+// newArr = {};
+// console.log(newArr);
+
+console.log(this);
+
+// const h1 = document.querySelector('h1');
+
+// 14 Which keywords are used in importing project dependencies into a file?
+// import, require, add, none of the above
+
+// let num = 1;
+// (function (()) {
+//   console.log(num);
+// })();
+
+// 18  We can use a try & catch block within a promise constructor?
+// false
+const promise = new Promise((resolve, reject) => {
+  try {
+    let x = false;
+    if (x) resolve('Good');
+    else throw new Error('Bad');
+  } catch (error) {
+    reject(error.message);
+  }
+});
+
+promise.then((res) => console.log(res)).catch((rej) => console.log(rej));
